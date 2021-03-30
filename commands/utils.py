@@ -15,11 +15,13 @@ class utils(commands.Cog):
     async def on_ready(self):
         print('Logged in as')
         print(self.bot.user.name)
+        print('----------------')
+        print("")
         #set activity to prefix
 
-    #need a listener for ping and give back the prefix 
+    #need a listener for ping and give back the prefix
 
-
+    
     @commands.command()
     async def ping(self, ctx):
         await ctx.send("pong!")

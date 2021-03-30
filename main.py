@@ -6,7 +6,7 @@ import requests
 import os
 
 connector = connector=ReqConnector()
-osuapi = OsuApi(osuKey,connector=ReqConnector())
+osuApiCall = OsuApi(osuKey,connector=ReqConnector())
 
 description = '''ex'''
 
@@ -15,15 +15,6 @@ intents.members = True
 
 bot = commands.Bot(command_prefix='m!', description=description, intents=intents)
 bot.remove_command('help')
-
-
-@bot.command()
-async def load(ctx, extension):
-    bot.load_extension(f'commands.{extension}')
-
-@bot.command()
-async def unload(ctx, extension):
-    bot.unload_extension(f'commands.{extension}')
 
 @bot.command()
 async def reload(ctx, name=None):
