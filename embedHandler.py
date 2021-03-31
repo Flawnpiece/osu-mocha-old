@@ -13,7 +13,7 @@ class embedHandler:
         ''' always 2 elements per line
         '''
         keys = list(self.elementList.keys())
-        
+
         i=0
         keysFormat1 = []
         while i <len(keys):
@@ -60,6 +60,8 @@ class embedHandler:
 
                 descriptionFormat = descriptionFormat + f" {keysFormat2[i]}"
 
+            elif keys[i].startswith("newline"):
+                descriptionFormat = descriptionFormat + "\n"
             else :
                 word = keys[i].find("_")
                 if word == -1:

@@ -16,7 +16,7 @@ intents.members = True
 bot = commands.Bot(command_prefix='m!', description=description, intents=intents)
 bot.remove_command('help')
 
-@bot.command()
+@bot.command(hidden=True)
 async def reload(ctx, name=None):
     if name:
         bot.reload_extension(f'commands.{name}')
