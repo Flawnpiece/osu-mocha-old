@@ -23,6 +23,7 @@ class embedHandler:
 
         embedFormat = embedFormatter(keys, self.elementList)
 
+        embedFormat.numberFormatting()
         # set prefix and suffix
         # exemple : "title_prefix:~"
         embedFormat.prefixAndSuffix()
@@ -73,6 +74,12 @@ class embedHandler:
 
         self.embed.set_image(url=url)
 
+    def setThumbnail(self, url):
+        ''' Url is needed
+        '''
+
+        self.embed.set_thumbnail(url=url)
+
     def getEmbed(self):
         return self.embed
 
@@ -91,6 +98,17 @@ class embedFormatter:
         self.keysFormat2 = []
         self.descriptionFormat = ""
 
+    def numberFormatting(self):
+        for v in self.keys:
+
+            # if float and can be changed to int it change to int
+            if type(self.elementList.get(v))==float:
+                if self.elementList.get(v).is_integer():
+                    self.elementList[v]=int(self.elementList.get(v))
+
+            if type(self.elementList.get(v)) == int:
+                # it format : 2130214  --->  2 130 214
+                self.elementList[v]=format(self.elementList.get(v), ',').replace(',', ' ').replace('.', ',')
 
     def prefixAndSuffix(self):
         ''' Usage :
@@ -249,9 +267,10 @@ class embedFormatter:
                 self.descriptionFormat = self.descriptionFormat + "\n\n"
 
             elif self.keys[i].startswith("separator"):
-                print("separator was called : ", self.keys[i])
+                #if self.keys[i].find("noSpace") != -1:
+                #    pass
                 separator = self.keys[i][10:11]
-                print("separator : " + separator)
+
 
                 self.descriptionFormat = self.descriptionFormat + f" {separator}"
 
